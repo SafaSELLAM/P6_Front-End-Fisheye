@@ -9,14 +9,41 @@
   </head>
   <body>
     <header>
-      <a href="index.html"> <img src="./assets/images/logo.png" class="logo" /></a>
+      <a href="index.html"> <img src="./assets/images/logo.png" class="logo" alt="Fisheye Home page" /></a>
     </header>
     <main id="main" aria-hidden="false">
       <div class="photograph-header" id="photograph_header"></div>
-
+      <div class="filtre_barre">
+        <p>Trier par :</p>
+        <div class="select-menu" role="listbox" aria-labelledby="sortLabel">
+      
+          <div class="select-btn" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
+            <span class="sBtn-text" data-sort="popularity">Popularité</span>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </div>
+      
+          <ul class="options" role="list" aria-hidden="true">
+            <li class="option" data-sort="popularity" role="option" aria-selected="true">
+              <span class="option-text">Popularité</span>
+            </li>
+            <li class="option" data-sort="title" role="option" aria-selected="false">
+              <span class="option-text">Titre</span>
+            </li>
+            <li class="option" data-sort="date" role="option" aria-selected="false">
+              <span class="option-text">Date</span>
+            </li>
+          </ul>
+      
+        </div>
+      </div>
+      
       <div id="media-container" class="media_section"></div>
 
       <div id="bottom-right-box">
+        <div id="sum-likes_container">
+          <p id="likes_sum"></p> <i class="fa-solid fa-heart" ></i>
+
+        </div>
         <p id="tarif_journalier"></p>
       </div>
     </main>
