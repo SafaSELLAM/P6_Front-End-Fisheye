@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="./css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -16,21 +16,22 @@
      
       <!-- <div class="filtre_barre"> </div> -->
          <div class="filtre_barre">      
-        <h2 id="sorting_title">Trier par :</h2>
+        <h2 id="sortLabel">Trier par :</h2>
         <div  class="select-menu" tabindex="0" role="listbox" aria-labelledby="sortLabel">
-          <div class="select-btn" aria-labelledby="Order by" role="button" aria-haspopup="listbox" aria-expanded="false">
+          <!-- probleme labelledby -->
+          <div class="select-btn" aria-labelledby="sortLabel" role="button" aria-haspopup="listbox" aria-expanded="false">
             <span class="default_filter_value" data-sort="popularity">Popularité</span>
             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </div>
       
           <ul class="options" role="list" aria-hidden="true">
-            <li class="option" data-sort="popularity" role="option" aria-selected="true" hidden>
+            <li class="option" aria-label="popularity" data-sort="popularity" role="option" aria-selected="true" hidden>
               <span class="option-text">Popularité</span>
             </li>
-            <li class="option" data-sort="title" role="option" aria-selected="false">
+            <li class="option" aria-label="title" data-sort="title" role="option" aria-selected="false">
               <span class="option-text">Titre</span>
             </li>
-            <li class="option" data-sort="date" role="option" aria-selected="false">
+            <li class="option" aria-label="Date" data-sort="date" role="option" aria-selected="false">
               <span class="option-text">Date</span>
             </li>
           </ul>
@@ -78,14 +79,14 @@
         <div class="modal-body">
           <form id="Form_modal">
             <div>
-              <label for="prenom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" required />
-              <label for="nom">Nom</label>
-              <input type="text" id="nom" name="nom" required />
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required />
-              <label for="message">Votre Message :</label>
-              <textarea id="message" name="message" rows="4" required></textarea>
+              <label for="prenom" id="labelPrenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" aria-labelledby=labelPrenom" required />
+              <label for="nom" id="labelNom">Nom</label>
+              <input type="text" id="nom" name="nom" aria-labelledby=labelNom" required />
+              <label for="email" id="labelEmail">Email</label>
+              <input type="email" id="email" name="email" aria-labelledby=labelEmail" required />
+              <label for="message" id="labelMessage">Votre Message :</label>
+              <textarea id="message" name="message" rows="4" aria-labelledby=labelMessage" required></textarea>
             </div>
             <button class="contact_button" aria-label="Send" id="submit_btn">Envoyer</button>
           </form>

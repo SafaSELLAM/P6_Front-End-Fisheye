@@ -26,7 +26,7 @@ async function displayData () {
 
   sectionHome.innerHTML = articlesToAdd
 
-  const allArticles = Array.from(document.getElementsByTagName('article'))
+  const allArticles = Array.from(document.getElementsByClassName('link'))
   allArticles.forEach((article) => {
     article.addEventListener('click', () => {
       window.location.href = `photographer.html?id=${article.dataset.photographeid}`

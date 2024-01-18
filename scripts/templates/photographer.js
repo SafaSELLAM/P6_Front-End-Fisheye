@@ -9,9 +9,11 @@ function photographerTemplate (data) {
   const taglineText = `<p class ="taglineText">${tagline}</p>`
   const priceTag = `<p class = "priceTag">${price}€/jours</p>`
   return `
-   <article tabindex="0" id="photographer_article" data-photographeid="${id}">
-    ${portraitPhotographer}
-    ${namePhotographer}
+   <article  id="photographer_article" >
+   <div class="link"tabindex="0" data-photographeid="${id}">
+   ${portraitPhotographer}
+   ${namePhotographer}
+   </div>
     ${cityName}
     ${taglineText}
     ${priceTag}
@@ -54,8 +56,8 @@ function createMediaElement (media, photographerName) {
   const altContent = media.title
   const mediaElement = media.image
     ? `<img tabindex="0" class="media-element" data-mediaId=${media.id} src="${mediaPath}" alt ="${altContent}, closeup view">`
-    : `<div tabindex="0" aria-label="${altContent}, closeup view"><video controls class="media-element" data-mediaId=${media.id} src="${mediaPath}"></div>`
-  const likeButton = `<button class="like-button" id="like_btn" data-mediaId="${media.id}"> <i class="fa-solid fa-heart heart-icon"></i></button>`
+    : `<div tabindex="0" aria-label="${altContent}, closeup view"><video aria-label="${altContent}, closeup view"controls class="media-element" data-mediaId=${media.id} src="${mediaPath}"></div>`
+  const likeButton = `<button aria-label ="likes" class="like-button"  data-mediaId="${media.id}"> <i class="fa-solid fa-heart heart-icon"></i></button>`
   const mediaInfo = `
     <div class="media-info">
       <p class="media-title">${media.title}</p>

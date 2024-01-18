@@ -144,7 +144,7 @@ async function displayPhotographerInfo () {
       mediaLightbox.addEventListener('click', () => openLightbox(index, media))
       mediaLightbox.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
-          openLightbox(index, media)
+          setTimeout(openLightbox(index, media), 0)
         }
       })
     })
@@ -184,7 +184,6 @@ function openLightbox (selectedMediaIndex, media) {
   // Affichez la lightbox
   const leftArrow = document.getElementById('left_arrow')
   const rightArrow = document.getElementById('right_arrow')
-  const closeLightbox = document.getElementById('close_lightbox')
 
   document.getElementById('main').setAttribute('aria-hidden', 'true')
   const lightbox = document.getElementById('lightbox')
@@ -228,13 +227,6 @@ function openLightbox (selectedMediaIndex, media) {
     }
   })
 
-  closeLightbox.addEventListener('click', closeModal)
-  closeLightbox.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      closeModal()
-    }
-  })
-
   function navigateLightbox (direction) {
     // Implémentez la logique pour naviguer vers l'image précédente ou suivante
     selectedMediaIndex = (selectedMediaIndex + direction + media.length) % media.length
@@ -253,9 +245,13 @@ function closeLightbox () {
   document.getElementById('lightbox').style.display = 'none'
 }
 
-document.getElementById('close_lightbox').addEventListener('click', () => {
-  closeLightbox()
+document.getElementById('close_lightbox').addEventListener('click', closeLightbox)
+document.getElementById('close_lightbox').addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    closeLightbox()
+  }
 })
+
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     closeLightbox()
@@ -266,7 +262,7 @@ document.addEventListener('keydown', (event) => {
 
 const optionMenu = document.getElementsByClassName('select-menu')[0]
 const selectBtn = optionMenu.getElementsByClassName('select-btn')[0]
-const options = optionMenu.querySelectorAll('.option')
+const options = Array.from(document.getElementsByClassName('option'))
 const filterBtn = optionMenu.getElementsByClassName('default_filter_value')[0]
 
 selectBtn.addEventListener('click', () => {
@@ -301,9 +297,9 @@ options.forEach((option, index) => {
   })
 
   option.addEventListener('keydown', (event) => {
-    if (event.code === 'Space' || event.code === 'Enter') {
+    if (event.code === 'Enter') {
       updateSelectedOption(index)
-      optionMenu.classList.remove('active')
+      setTimeout(() => optionMenu.classList.remove('active'), 0)
       selectBtn.focus()
     } else if (event.code === 'ArrowUp' && index > 0) {
       options[index - 1].focus()

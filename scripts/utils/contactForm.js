@@ -50,6 +50,11 @@ function addModalListeners () {
 
   const closeBtn = document.getElementById('close_btn')
   closeBtn.addEventListener('click', closeModal)
+  closeBtn.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      setTimeout(closeModal, 0)
+    }
+  })
 }
 
 // gestion du formulaire
