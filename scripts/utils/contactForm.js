@@ -28,7 +28,7 @@ function displayModal () {
     }
   })
 }
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keyup', (event) => {
   if (event.key === 'Escape') {
     closeModal()
   }
@@ -50,14 +50,14 @@ function addModalListeners () {
 
   const closeBtn = document.getElementById('close_btn')
   closeBtn.addEventListener('click', closeModal)
-  closeBtn.addEventListener('keydown', (event) => {
+  closeBtn.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
-      setTimeout(closeModal, 0)
+      closeModal()
     }
   })
 }
 
-// gestion du formulaire
+// gestion du formulaire de contacts
 function validateForm (event) {
   event.preventDefault()
 

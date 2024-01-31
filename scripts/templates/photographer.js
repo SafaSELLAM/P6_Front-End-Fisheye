@@ -26,8 +26,8 @@ function photographerTemplateId (data) {
   const picture = `assets/photographers/${portrait}`
 
   const portraitPhotographer = `<img src="${picture}" aria-label="${name}" >`
-  const namePhotographer = `<h2>${name}</h2>`
-  const cityName = `<h3>${city}, ${country}</h3>`
+  const namePhotographer = `<h1>${name}</h1>`
+  const cityName = `<h2>${city}, ${country}</h2>`
   const taglineText = `<p class ="taglineText">${tagline}</p>`
 
   return `
@@ -38,7 +38,7 @@ ${cityName}
 ${taglineText}
 
 </div>
-  <button class="contact_button" id="contact_btn" aria-label="Contact Me">Contactez-moi</button>
+  <button class="contact_button" id="contact_btn" aria-label="Contactez-moi">Contactez-moi</button>
     ${portraitPhotographer}
     </div>`
 }
@@ -60,9 +60,9 @@ function createMediaElement (media, photographerName) {
   const likeButton = `<button aria-label ="likes" class="like-button"  data-mediaId="${media.id}"> <i class="fa-solid fa-heart heart-icon"></i></button>`
   const mediaInfo = `
     <div class="media-info">
-      <p class="media-title">${media.title}</p>
+      <h3 class="media-title">${media.title}</h3>
       <div class="likes-container">
-        <p aria-label ="likes" class="media-likes"  data-mediaId=${media.id} data-likes=${media.likes}>${media.likes}</p>
+        <h4 aria-label ="likes" class="media-likes"  data-mediaId=${media.id} data-likes=${media.likes}>${media.likes}</h4>
        ${likeButton}
       </div>
     </div>

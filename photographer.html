@@ -17,13 +17,12 @@
       <!-- <div class="filtre_barre"> </div> -->
          <div class="filtre_barre">      
         <h2 id="sortLabel">Trier par :</h2>
-        <div  class="select-menu" tabindex="0" role="listbox" aria-labelledby="sortLabel">
-          <!-- probleme labelledby -->
-          <div class="select-btn" aria-labelledby="sortLabel" role="button" aria-haspopup="listbox" aria-expanded="false">
+        <div  class="select-menu" tabindex="0" role="listbox" aria-labelledby="sortLabel" aria-haspopup="listbox" aria-expanded="false">
+          
+          <div class="select-btn" role="option" >
             <span class="default_filter_value" data-sort="popularity">Popularité</span>
             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
           </div>
-      
           <ul class="options" role="list" aria-hidden="true">
             <li class="option" aria-label="popularity" data-sort="popularity" role="option" aria-selected="true" hidden>
               <span class="option-text">Popularité</span>
@@ -35,7 +34,6 @@
               <span class="option-text">Date</span>
             </li>
           </ul>
-      
         </div>
       </div>
       

@@ -31,7 +31,7 @@ async function displayData () {
     article.addEventListener('click', () => {
       window.location.href = `photographer.html?id=${article.dataset.photographeid}`
     })
-    article.addEventListener('keydown', (event) => {
+    article.addEventListener('keyup', (event) => {
       if (event.key === 'Enter') {
         window.location.href = `photographer.html?id=${article.dataset.photographeid}`
       }

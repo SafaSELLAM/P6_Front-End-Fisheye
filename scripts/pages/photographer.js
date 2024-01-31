@@ -1,5 +1,5 @@
 // Mettre le code JavaScript lié à la page photographer.html
-import { displayModal, closeModal, addModalListeners } from '../utils/contactForm.js'
+import { addModalListeners } from '../utils/contactForm.js'
 import {
   photographerTemplateId,
   createMediaElement,
@@ -124,7 +124,7 @@ async function displayPhotographerInfo () {
     const options = document.querySelectorAll('.option')
     options.forEach((option) => {
       option.addEventListener('click', () => handleOptionChange(option))
-      option.addEventListener('keydown', (event) => {
+      option.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
           handleOptionChange(option)
         }
@@ -142,9 +142,9 @@ async function displayPhotographerInfo () {
     const allMedia = Array.from(document.getElementsByClassName('media-element'))
     allMedia.forEach((mediaLightbox, index) => {
       mediaLightbox.addEventListener('click', () => openLightbox(index, media))
-      mediaLightbox.addEventListener('keydown', (event) => {
+      mediaLightbox.addEventListener('keyup', (event) => {
         if (event.key === 'Enter') {
-          setTimeout(openLightbox(index, media), 0)
+          openLightbox(index, media)
         }
       })
     })
@@ -164,8 +164,10 @@ async function displayPhotographerInfo () {
 }
 displayPhotographerInfo()
 
+// Gérer l'ouverture de la lightbox
+
 function openLightbox (selectedMediaIndex, media) {
-  // Mettez à jour le contenu de la lightbox avec le média sélectionné
+  // Mettre à jour le contenu de la lightbox avec le média sélectionné
   const lightboxMediaContainer = document.getElementById('media_lightbox')
 
   const selectedMedia = media[selectedMediaIndex]
@@ -214,15 +216,25 @@ function openLightbox (selectedMediaIndex, media) {
 
   // Ajoutez des écouteurs d'événements pour la navigation dans la lightbox
   leftArrow.addEventListener('click', () => navigateLightbox(-1))
-  leftArrow.addEventListener('keydown', (event) => {
+  leftArrow.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
+      navigateLightbox(-1)
+    }
+  })
+  lightbox.addEventListener('keyup', (event) => {
+    if (event.key === 'ArrowLeft') {
       navigateLightbox(-1)
     }
   })
 
   rightArrow.addEventListener('click', () => navigateLightbox(1))
-  rightArrow.addEventListener('keydown', (event) => {
+  rightArrow.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
+      navigateLightbox(1)
+    }
+  })
+  lightbox.addEventListener('keyup', (event) => {
+    if (event.key === 'ArrowRight') {
       navigateLightbox(1)
     }
   })
@@ -238,7 +250,7 @@ function openLightbox (selectedMediaIndex, media) {
     lightboxMediaContainer.innerHTML = newMediaElementHTML
   }
 }
-
+// close lightbox
 function closeLightbox () {
   document.getElementById('main').setAttribute('aria-hidden', 'false')
   document.getElementById('lightbox').setAttribute('aria-hidden', 'true')
@@ -246,13 +258,13 @@ function closeLightbox () {
 }
 
 document.getElementById('close_lightbox').addEventListener('click', closeLightbox)
-document.getElementById('close_lightbox').addEventListener('keydown', (event) => {
+document.getElementById('close_lightbox').addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
     closeLightbox()
   }
 })
 
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keyup', (event) => {
   if (event.key === 'Escape') {
     closeLightbox()
   }
@@ -274,8 +286,8 @@ selectBtn.addEventListener('click', () => {
     options[0].focus()
   }
 })
-
-optionMenu.addEventListener('keydown', (event) => {
+// activer le toggle au clique ou au clavier de la barre de filtre
+optionMenu.addEventListener('keyup', (event) => {
   if (event.code === 'Space' || event.code === 'Enter') {
     optionMenu.classList.toggle('active')
     const isExpanded = optionMenu.classList.contains('active')
@@ -296,7 +308,7 @@ options.forEach((option, index) => {
     selectBtn.focus()
   })
 
-  option.addEventListener('keydown', (event) => {
+  option.addEventListener('keyup', (event) => {
     if (event.code === 'Enter') {
       updateSelectedOption(index)
       setTimeout(() => optionMenu.classList.remove('active'), 0)
@@ -308,7 +320,7 @@ options.forEach((option, index) => {
     }
   })
 })
-
+// cache le filtre selectionner dans le listing
 function updateSelectedOption (index) {
   options.forEach((option, i) => {
     const isSelected = i === index
@@ -321,6 +333,6 @@ function updateSelectedOption (index) {
     }
   })
 
-  const selectedOption = options[index].querySelector('.option-text').innerText
+  const selectedOption = options[index].getElementsByClassName('option-text')[0].innerText
   filterBtn.innerText = selectedOption
 }
